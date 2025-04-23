@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Random password generator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+       <div class="container">
+        <h1>Generate a <br> <span>Random password</span></h1><br>
+        <div class="display">
+            <input type="text" id="password" placeholder="password">
+            <img src="image.png" alt="hey" width="40" height="40" onclick="copy()">
+        </div>
+        <button onclick="creating()">  Generate</button>
+       </div>
+
+       <script>
+          const pass = document.getElementById("password");
+          const len = 14;
+          const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          const lowercase = "abcdefghijklmnopqrstuvwxyz";
+          const schar = "~!@#$%^&*()_+><{}[]|\/?=-";
+          const number = "0123456789";
+
+          function creating(){
+            let password="";
+            let char = uppercase + lowercase + number + schar;
+            password += uppercase[Math.floor(Math.random()*uppercase.length)];
+            password += lowercase[Math.floor(Math.random()*lowercase.length)];
+            password += number[Math.floor(Math.random()*number.length)];
+            password += schar[Math.floor(Math.random()*schar.length)];
+
+            while(len > password.length){
+               password += char[Math.floor(Math.random()*char.length)];
+               pass.value = password;
+            }
+          }
+
+          function copy(){
+            pass.select(); // selects the input fields values
+            document.execCommand("copy"); //here the execCommand is a browser fundtion which works just like the copy in the ctrl+c and copies it to clipboard
+          }
+
+       </script>
+
+    </body>
+</html>
